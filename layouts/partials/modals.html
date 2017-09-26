@@ -1,0 +1,44 @@
+{{ "<!-- packages Modals -->" | safeHTML }}
+{{ range .Site.Data.packages }}
+  <div class="packages-modal modal fade" id="packagesModal{{ .modalID }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="close-modal" data-dismiss="modal">
+        <div class="lr">
+          <div class="rl">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="modal-body">
+              <h2>{{ .title  | markdownify }}</h2>
+              <p class="item-intro text-muted">{{ .subtitle | markdownify }}</p>
+              {{ $url := printf "img/packages/%s" .img }}
+              <img class="img-responsive img-centered" src="{{ $url | absURL }}" alt="">
+              <p>{{ .description | markdownify }}</p>    
+                  <div class="row flexbox flexbox-center">
+                      <div class="plan">
+                           <h3 class="plan-title">Three Days</h3>
+                            <p class="plan-price">$275</p>
+                      </div>
+                      <div class="plan">
+                          <h3 class="plan-title">One Week</h3>
+                          <p class="plan-price">$300</p>
+                      </div>
+                      <div class = "plan">
+                          <h3 class="plan-title">One Month</h3>
+                          <p class="plan-price">$600</p>
+                      </div>
+                  </div>  
+                <!--<li>{{ with $.Site.Params.packages.modal.date }}{{ . }}{{ end }}: {{ .date }}</li>
+                <li>{{ with $.Site.Params.packages.modal.client }}{{ . | markdownify }}{{ end }}: <a href="{{ .clientLink }}">{{ .client }}</a></li>
+                <li>{{ with $.Site.Params.packages.modal.category }}{{ . }}{{ end }}: {{ .category  | markdownify }}</li>-->
+              <button type="button" class="btn btn-primary" style="background-color: #222; border-color: #222;" data-dismiss="modal"><i class="fa fa-times"></i> {{ with $.Site.Params.packages.modal.buttonText }}{{ . }}{{ end }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}
